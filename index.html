@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumos Práticos — canal grátis de praticagem (PSCPP) no Telegram</title>
+<meta name="description" content="Questão diária de praticagem (PSCPP) de fonte primária, no Telegram. Card, termo, flashcard, questão e figura todo dia. Entre no canal grátis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#142838;--brand:#1f334a;--cyan:#06baf1;--cyan-d:#0590bf;--ink-on-cyan:#06243a;
+    --bg:#f4f7fb;--surface:#ffffff;--ink:#16293c;--mut:#51677c;--line:#e3eaf1;
+    --shadow:0 10px 30px rgba(20,40,60,.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.55;padding-bottom:96px;
+  }
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:520px;margin:0 auto}
+  .pad{padding-left:20px;padding-right:20px}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;color:#fff;text-align:center;
+    padding:46px 20px 40px;min-height:430px;display:flex;flex-direction:column;justify-content:center}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:url(img/hero.jpg) center/cover no-repeat;transform:scale(1.02)}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(15,28,42,.62) 0%,rgba(15,28,42,.78) 60%,rgba(20,40,60,.92) 100%)}
+  .hero>*{position:relative;z-index:1}
+  .badge{width:96px;height:96px;border-radius:24px;margin:0 auto 18px;display:flex;
+    align-items:center;justify-content:center;background:#fff;box-shadow:0 14px 34px rgba(0,0,0,.35)}
+  .badge img{width:70px;height:70px}
+  h1{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.6px}
+  .hero .sub{color:#7fe0ff;font-size:15px;font-weight:700;margin-top:10px;letter-spacing:.2px}
+  .hero .lead{color:#dde7f0;font-size:16px;margin-top:16px;max-width:36ch;margin-left:auto;margin-right:auto;
+    text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
+  /* BUTTONS */
+  .btn{display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;
+    background:var(--cyan);color:var(--ink-on-cyan);font-size:17px;font-weight:800;
+    text-decoration:none;padding:16px 18px;border-radius:14px;border:0;
+    box-shadow:0 10px 24px rgba(6,186,241,.32);transition:transform .15s ease,box-shadow .15s ease}
+  .btn:hover{box-shadow:0 12px 28px rgba(6,186,241,.42)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .btn-hero{margin-top:24px}
+  .hint{color:#b9c8d6;font-size:12.5px;margin-top:11px}
+
+  /* SECTIONS */
+  section{padding-top:38px}
+  .eyebrow{color:var(--cyan-d);font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}
+  h2{font-size:22px;font-weight:800;margin-top:7px;letter-spacing:-.3px;color:var(--brand)}
+  .txt{color:var(--mut);font-size:15.5px;margin-top:11px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
+  /* FEATURE GRID */
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  .feat .it{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+    padding:14px;display:flex;flex-direction:column;gap:9px}
+  .feat .ic{width:38px;height:38px;border-radius:10px;background:#e7f7fe;color:var(--cyan-d);
+    display:flex;align-items:center;justify-content:center}
+  .feat .it b{font-size:14.5px;color:var(--ink);font-weight:700}
+  .feat .it span{font-size:13px;color:var(--mut)}
+  .full{grid-column:1 / -1}
+
+  /* EXAMPLES (real posts) */
+  .gallery{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:18px}
+  .shot{width:100%;max-width:300px;background:var(--surface);
+    border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  .shot img{width:100%;height:auto;aspect-ratio:760/950}
+  .shot .cap{font-size:12.5px;color:var(--mut);padding:10px 13px;border-top:1px solid var(--line)}
+  @media (min-width:560px){.gallery{flex-direction:row;flex-wrap:wrap;justify-content:center}.shot{max-width:230px}}
+
+  /* TRUST */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{background:var(--surface);border:1px solid var(--line);color:var(--brand);
+    font-size:13px;font-weight:700;padding:9px 13px;border-radius:999px}
+
+  /* PAID TEASER */
+  .teaser{background:linear-gradient(135deg,#1f334a 0%,#13283c 100%);color:#eaf3fa;
+    border-radius:var(--radius);padding:22px;margin-top:18px;box-shadow:var(--shadow)}
+  .teaser .tag{display:inline-block;background:rgba(6,186,241,.2);color:#7fe0ff;
+    font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:5px 10px;border-radius:7px}
+  .teaser h3{font-size:19px;font-weight:800;margin-top:11px}
+  .teaser p{color:#bcd0e0;font-size:14.5px;margin-top:9px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
+  /* STICKY CTA */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;
+    padding:13px 20px calc(13px + env(safe-area-inset-bottom));
+    background:linear-gradient(to top,var(--bg) 74%,rgba(244,247,251,0));border-top:1px solid var(--line)}
+  .sticky .wrap{max-width:520px}
+
+  footer{text-align:center;color:var(--mut);font-size:12.5px;padding:30px 20px 8px}
+  footer a{color:var(--cyan-d);text-decoration:none;font-weight:600}
+
+  @media (max-width:360px){.feat{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{transition:none!important;animation:none!important}
+    .hero::before{transform:none}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="badge"><img src="logo.png" alt="Logo Rumos Práticos" width="70" height="70"></div>
+    <h1>Rumos Práticos</h1>
+    <div class="sub">QUESTÃO DIÁRIA DE PRATICAGEM · PSCPP</div>
+    <p class="lead">Estudar pro PSCPP é muito conteúdo e pouco tempo. A gente manda, todo dia no Telegram, uma dose curta e confiável pra você avançar sem se perder.</p>
+    <a class="btn btn-hero" href="https://t.me/rumospraticos">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 16.6l-.4 4.02c.57 0 .82-.25 1.12-.55l2.7-2.58 5.6 4.1c1.03.57 1.76.27 2.04-.95L23.9 4.6c.33-1.53-.55-2.13-1.55-1.76L2.2 10.62c-1.5.58-1.48 1.42-.26 1.8l5.04 1.57L18.6 6.9c.55-.36 1.05-.16.64.2"/></svg>
+      Entrar no canal grátis
+    </a>
+    <div class="hint">É um canal no Telegram. O botão leva direto pra lá.</div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="pad">
+      <div class="eyebrow">O que você recebe</div>
+      <h2>Todo dia, sem maratona</h2>
+      <p class="txt">Conteúdo curto que cabe na rotina, nos formatos que fixam de verdade.</p>
+      <div class="feat">
+        <div class="it"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span><b>Card de ensino</b><span>Abre o tópico do dia</span></div>
+        <div class="it"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.5"/></svg></span><b>Termo</b><span>Vocabulário náutico</span></div>
+        <div class="it"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M21 7v10a2 2 0 0 1-2 2"/></svg></span><b>Flashcard</b><span>Recall ativo</span></div>
+        <div class="it"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><b>Questão</b><span>Gabarito na hora</span></div>
+        <div class="it full"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg></span><b>Figura</b><span>Diagramas próprios de manobra e arte naval</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="pad">
+        <div class="eyebrow">Veja o conteúdo de verdade</div>
+        <h2>Exemplos do que sai no canal</h2>
+      </div>
+      <div class="gallery pad">
+        <figure class="shot"><img src="img/ex-questao.png" alt="Exemplo de questão de múltipla escolha do RIPEAM-72" loading="lazy"><figcaption class="cap">Questão (RIPEAM-72), com gabarito e fonte.</figcaption></figure>
+        <figure class="shot"><img src="img/ex-figura.png" alt="Exemplo de figura explicando a pressão lateral das pás do hélice" loading="lazy"><figcaption class="cap">Figura própria (Arte Naval), do conceito.</figcaption></figure>
+        <figure class="shot"><img src="img/ex-termo.png" alt="Exemplo de termo náutico do Arte Naval" loading="lazy"><figcaption class="cap">Termo (Arte Naval), definição direta.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="eyebrow">Por que confiar</div>
+      <h2>Só fonte primária, auditado</h2>
+      <p class="txt">Cada item é autoral e conferido contra a fonte, com a referência sempre citada. Nada de banco copiado ou material desatualizado.</p>
+      <div class="chips">
+        <span class="chip">Lei e NORMAM</span>
+        <span class="chip">RIPEAM</span>
+        <span class="chip">Miguens</span>
+        <span class="chip">Provas oficiais</span>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="eyebrow">Quer mais</div>
+      <div class="teaser">
+        <span class="tag">Rumos Práticos +</span>
+        <h3>Mais volume e o material avançado</h3>
+        <p>O canal pago recebe bem mais conteúdo por dia e o material de manobra e estabilidade do Arte Naval (efeito de hélice, leme, squat, metacentro) com as figuras, que não vão pro grátis. Comece pelo grátis e suba quando quiser.</p>
+      </div>
+    </section>
+
+    <footer>Instagram <a href="https://instagram.com/rumos.praticos">@rumos.praticos</a></footer>
+  </main>
+
+  <div class="sticky"><div class="wrap pad">
+    <a class="btn" href="https://t.me/rumospraticos">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.78 16.6l-.4 4.02c.57 0 .82-.25 1.12-.55l2.7-2.58 5.6 4.1c1.03.57 1.76.27 2.04-.95L23.9 4.6c.33-1.53-.55-2.13-1.55-1.76L2.2 10.62c-1.5.58-1.48 1.42-.26 1.8l5.04 1.57L18.6 6.9c.55-.36 1.05-.16.64.2"/></svg>
+      Entrar no canal grátis
+    </a>
+  </div></div>
+
+</body>
+</html>
