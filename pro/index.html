@@ -241,6 +241,11 @@ fbq('init','2128490337733335');fbq('track','PageView');
           </div>
           <div class="securenote">Pagamento processado pelo Asaas. Seus dados vão direto para o gateway.</div>
         </form>
+        <div id="painel-bot" style="display:none">
+          <h2>Assinatura criada</h2>
+          <p>Continue no Telegram para pagar e ativar seu acesso.</p>
+          <a id="btn-bot" class="btn" href="#" style="margin-top:12px">Abrir o Rumos Praticos no Telegram</a>
+        </div>
       </div>
     </section>
 
@@ -296,11 +301,12 @@ fbq('init','2128490337733335');fbq('track','PageView');
       });
       if(!resp.ok) throw new Error("falha " + resp.status);
       var dados = await resp.json();
-      if(dados && dados.checkout_url){
-        window.location.href = dados.checkout_url;
-      }else{
-        throw new Error("sem link de checkout");
-      }
+      if(!dados || !dados.deep_link){ throw new Error("sem deep link"); }
+      // bot-first: manda pro bot; o pagamento e a ativacao acontecem no bot
+      document.getElementById("btn-bot").href = dados.deep_link;
+      form.style.display = "none";
+      document.getElementById("painel-bot").style.display = "";
+      window.location.href = dados.deep_link;
     }catch(err){
       erro.textContent = "Nao consegui iniciar o pagamento agora. Tente de novo em instantes.";
       btn.disabled = false;
